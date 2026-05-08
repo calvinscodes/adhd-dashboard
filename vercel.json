@@ -1,6 +1,6 @@
 {
-  "buildCommand": "pnpm --filter web build",
-  "outputDirectory": "apps/web/dist",
+  "buildCommand": "pnpm --filter web build && cp -r apps/web/dist/. dist",
+  "outputDirectory": "dist",
   "installCommand": "pnpm install",
   "functions": {
     "api/server.ts": {
