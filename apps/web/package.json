@@ -7,7 +7,7 @@
     "dev": "concurrently -n vite,api -c blue,green \"vite\" \"tsx watch src/server/index.ts\"",
     "dev:web-only": "vite",
     "dev:api": "tsx watch src/server/index.ts",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx"
