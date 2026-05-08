@@ -1,0 +1,1 @@
+{"root":["./vite.config.ts","./src/server/app.ts","./src/server/index.ts","./src/server/lib/supabase-admin.ts","./src/server/lib/utils.ts","./src/server/routes/ai.ts","./src/server/routes/xp.ts"],"version":"5.9.3"}

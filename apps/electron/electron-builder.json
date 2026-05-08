@@ -1,0 +1,41 @@
+{
+  "appId": "com.adhd-dashboard.app",
+  "productName": "ADHD Dashboard",
+  "directories": {
+    "output": "dist"
+  },
+  "files": [
+    "src/**/*",
+    "../../apps/web/dist/**/*",
+    "icons/**/*"
+  ],
+  "mac": {
+    "category": "public.app-category.productivity",
+    "icon": "icons/icon.icns",
+    "hardenedRuntime": true,
+    "gatekeeperAssess": false,
+    "target": [
+      {
+        "target": "dmg",
+        "arch": ["arm64", "x64"]
+      }
+    ]
+  },
+  "dmg": {
+    "title": "ADHD Dashboard",
+    "background": "icons/dmg-background.png",
+    "window": {
+      "width": 540,
+      "height": 380
+    },
+    "contents": [
+      { "x": 130, "y": 220, "type": "file" },
+      { "x": 410, "y": 220, "type": "link", "path": "/Applications" }
+    ]
+  },
+  "publish": {
+    "provider": "github",
+    "owner": "YOUR_GITHUB_USERNAME",
+    "repo": "adhd-dashboard"
+  }
+}

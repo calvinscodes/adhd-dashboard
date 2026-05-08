@@ -1,0 +1,19 @@
+{
+  "name": "electron",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/main.js",
+  "scripts": {
+    "start": "concurrently \"pnpm --filter web dev\" \"wait-on http://localhost:5173 && electron .\"",
+    "dev": "wait-on http://localhost:5173 && electron .",
+    "build": "electron-builder --mac --config electron-builder.json",
+    "pack": "electron-builder --dir"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "electron": "^30.0.6",
+    "electron-builder": "^24.13.3",
+    "wait-on": "^7.2.0"
+  }
+}
