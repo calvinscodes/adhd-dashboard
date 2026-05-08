@@ -1,8 +1,29 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, Component } from 'react'
+import type { ReactNode } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { AppLayout } from '@/components/layout/AppLayout'
+
+class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | null }> {
+  state = { error: null }
+  static getDerivedStateFromError(error: Error) { return { error } }
+  render() {
+    if (this.state.error) {
+      return (
+        <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-zinc-950 p-8">
+          <div className="max-w-lg w-full bg-white dark:bg-zinc-900 rounded-xl p-6 border border-red-200 dark:border-red-800">
+            <h1 className="text-red-600 font-bold text-lg mb-2">App Error</h1>
+            <pre className="text-xs text-slate-600 dark:text-zinc-400 whitespace-pre-wrap break-all">
+              {String(this.state.error)}
+            </pre>
+          </div>
+        </div>
+      )
+    }
+    return this.props.children
+  }
+}
 
 // Lazy-loaded pages
 const AuthPage = lazy(() => import('@/pages/AuthPage').then((m) => ({ default: m.AuthPage })))
@@ -79,10 +100,12 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </QueryClientProvider>
+    </ErrorBoundary>
   )
 }
